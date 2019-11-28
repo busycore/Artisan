@@ -174,7 +174,7 @@ void Integrator::device_update(Device *device, DeviceScene *dscene, Scene *scene
   }
 
   kintegrator->sampling_pattern = sampling_pattern;
-  kintegrator->aa_samples = aa_samples;
+  kintegrator->scrambling_distance = scrambling_distance;
 	kintegrator->aa_samples = aa_samples;
 
   if (light_sampling_threshold > 0.0f) {

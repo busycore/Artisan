@@ -184,10 +184,14 @@ class CYCLES_RENDER_PT_sampling(CyclesButtonsPanel, Panel):
             col = layout.column(align=True)
             col.prop(cscene, "samples", text="Render")
             col.prop(cscene, "preview_samples", text="Viewport")
+            col.prop(cscene, "scrambling_factor", text="scrambling distance")
+
+            draw_samples_info(layout, context)
         else:
             col = layout.column(align=True)
             col.prop(cscene, "aa_samples", text="Render")
             col.prop(cscene, "preview_aa_samples", text="Viewport")
+            col.prop(cscene, "scrambling_factor", text="scrambling distance")
 
         # Viewport denoising is currently only supported with OptiX
         if show_optix_denoising(context):

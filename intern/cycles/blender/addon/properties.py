@@ -358,6 +358,13 @@ class CyclesRenderSettings(bpy.types.PropertyGroup):
         min=0.0, max=1.0,
         default=0.01,
     )
+    scrambling_factor: FloatProperty(
+        name="Scrambling Factor",
+        description="Factor of Scrambling distance code, "
+        "USE WITH CAUTION",
+        min=0.0, max=10.0,
+        default=1.0,
+    )
 
     min_light_bounces: IntProperty(
             name="Min Light Bounces",
