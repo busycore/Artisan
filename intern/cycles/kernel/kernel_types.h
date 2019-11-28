@@ -61,7 +61,9 @@ CCL_NAMESPACE_BEGIN
 #define LAMP_NONE (~0)
 #define ID_NONE (0.0f)
 
-#define VOLUME_STACK_SIZE 32
+#define VOLUME_STACK_SIZE	32
+#define RNG_DITHER_MASK 0x80000000
+#define RNG_DITHER_SIZE 128
 
 /* Split kernel constants */
 #define WORK_POOL_SIZE_GPU 64
@@ -1355,6 +1357,7 @@ typedef struct KernelIntegrator {
   int sampling_pattern;
   int aa_samples;
   float scrambling_distance;
+  int dither_size;
 
   /* volume render */
   int use_volumes;
