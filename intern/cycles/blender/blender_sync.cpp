@@ -322,6 +322,27 @@ void BlenderSync::sync_integrator()
     integrator->subsurface_samples = subsurface_samples;
     integrator->volume_samples = volume_samples;
   }
+  
+	int samples = get_int(cscene, "samples");
+	if(get_boolean(cscene, "use_square_samples")){
+		samples *= samples;
+	}
+	if (samples < 64 || preview){
+			integrator->scrambling_distance = 1.0f;
+	}
+	else if (samples < 256){
+			integrator->scrambling_distance = 0.5f - (samples-64)*0.3f/192;
+	}
+	else if (samples < 1024){
+			integrator->scrambling_distance = 0.2f - (samples-256)*0.1f/768;
+	}
+	else if (samples < 4096){
+			integrator->scrambling_distance = 0.1f - (samples-1024)*0.08f/3072;
+	}
+	else{
+			integrator->scrambling_distance = 0.02f;
+	}
+
 
   if (b_scene.render().use_simplify()) {
     if (preview) {
