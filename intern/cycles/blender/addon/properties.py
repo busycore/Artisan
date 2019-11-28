@@ -252,6 +252,12 @@ class CyclesRenderSettings(bpy.types.PropertyGroup):
         default=False,
     )
 
+    use_auto_tiles: BoolProperty(
+        name="Auto Tiles",
+        description="Automatically manage tile size and draw order for optimal performance and memory usage",
+        default=True,
+    )
+
     samples: IntProperty(
         name="Samples",
         description="Number of samples to render for each pixel",
