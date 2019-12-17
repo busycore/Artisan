@@ -213,7 +213,8 @@ void Integrator::device_update(Device *device, DeviceScene *dscene, Scene *scene
   dscene->sobol_directions.copy_to_device();
 
   /* Sobol dithering table */
-	if(use_dithered_sampling) {
+	if(use_dithered_sampling) 
+  {
 		int dither_size = sobol_dither_matrix_size();
 		float2 *dither_matrix = dscene->sobol_dither.resize(dither_size*dither_size);
 
@@ -223,16 +224,19 @@ void Integrator::device_update(Device *device, DeviceScene *dscene, Scene *scene
 
 		kintegrator->dither_size = dither_size;
 	}
-	else {
+	else 
+  {
 		kintegrator->dither_size = 0;
 	}
 
-  /* Clamping. */
+
+   /* Clamping. --- Changed so the patch works fine
   bool use_sample_clamp = (sample_clamp_direct != 0.0f || sample_clamp_indirect != 0.0f);
-  if (use_sample_clamp != scene->film->use_sample_clamp) {
+  if (use_sample_clamp != scene->film->use_sample_clamp) 
+  {
     scene->film->use_sample_clamp = use_sample_clamp;
     scene->film->tag_update(scene);
-  }
+  } */
 
   need_update = false;
 }
