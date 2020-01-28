@@ -1523,11 +1523,11 @@ void device_optix_info(vector<DeviceInfo> &devices)
       cuDevicePrimaryCtxRelease(cuda_device);
     }
 
-    // Only add devices with RTX support
+/*     // Only add devices with RTX support
     if (rtcore_version == 0)
       it = cuda_devices.erase(it);
-    else
-      ++it;
+    else*/
+      ++it; 
   }
 
   devices.insert(devices.end(), cuda_devices.begin(), cuda_devices.end());
