@@ -31,6 +31,7 @@
 #  include "util/util_time.h"
 #  include "util/util_debug.h"
 #  include "util/util_logging.h"
+#  include <iostream>
 
 #  ifdef WITH_CUDA_DYNLOAD
 #    include <cuew.h>
@@ -605,7 +606,10 @@ class OptiXDevice : public CUDADevice {
 
     const int end_sample = rtile.start_sample + rtile.num_samples;
     // Keep this number reasonable to avoid running into TDRs
-    const int step_samples = (info.display_device ? 8 : 32);
+    const int step_samples = end_sample;//(info.display_device ? 8 : 32);
+
+    //std::cout << " Step Samples Count : " << step_samples;
+        
     // Offset into launch params buffer so that streams use separate data
     device_ptr launch_params_ptr = launch_params.device_pointer +
                                    thread_index * launch_params.data_elements;
