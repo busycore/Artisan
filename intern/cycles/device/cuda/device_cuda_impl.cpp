@@ -1727,11 +1727,16 @@ void CUDADevice::path_trace(DeviceTask &task,
     min_blocks *= 8;
   }
 
-  uint step_samples = divide_up(min_blocks * num_threads_per_block, wtile->w * wtile->h);
+    uint step_samples;// = divide_up(min_blocks * num_threads_per_block, wtile->w * wtile->h);
 
-  /* Render all samples. */
-  int start_sample = rtile.start_sample;
-  int end_sample = rtile.start_sample + rtile.num_samples;
+    /* Render all samples. */
+    int start_sample = rtile.start_sample;
+    int end_sample = rtile.start_sample + rtile.num_samples;
+    
+    step_samples = end_sample;
+		if (end_sample > 4000){
+			step_samples = 4000;
+		}
 
   for (int sample = start_sample; sample < end_sample; sample += step_samples) {
     /* Setup and copy work tile to device. */
